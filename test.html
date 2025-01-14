@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled DOM Manipulation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Styled DOM Manipulation Example</h1>
+    <p id="paragraph">This is a sample paragraph.</p>
+    <ul id="list">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <button id="changeTextBtn">Change Text</button>
+    <button id="highlightBtn">Toggle Highlight</button>
+    <button id="hideParagraphBtn">Hide Paragraph</button>
+    <button id="showParagraphBtn" class="hidden">Show Paragraph</button>
+    <button id="addItemBtn">Add List Item</button>
+    <button id="removeItemBtn">Remove Last Item</button>
+    <button id="insertBeforeBtn">Insert Item Before</button>
+    <button id="insertAfterBtn">Insert Item After</button>
+    <button id="replaceItemBtn">Replace First Item</button>
+    <button id="cloneItemBtn">Clone First Item</button>
+    <button id="modifyAttributeBtn">Modify Attribute</button>
+    <button id="removeAttributeBtn">Remove Attribute</button>
+    <button id="changeStyleBtn">Change Style</button>
+    <button id="createElementBtn">Create Element</button>
+    <button id="traverseDOMBtn">Traverse DOM</button>
+    <button id="hoverBtn">Hover Over Me</button>
+    <input type="text" id="inputField" placeholder="Type something...">
+
+    <script>
+        // Change the text of the title
+        document.getElementById('changeTextBtn').addEventListener('click', function() {
+            document.getElementById('title').textContent = 'Text Changed!';
+        });
+
+        // Toggle highlight class on the title
+        document.getElementById('highlightBtn').addEventListener('click', function() {
+            document.getElementById('title').classList.toggle('highlight');
+        });
+
+        // Hide the paragraph
+        document.getElementById('hideParagraphBtn').addEventListener('click', function() {
+            document.getElementById('paragraph').classList.add('hidden');
+            document.getElementById('showParagraphBtn').classList.remove('hidden');
+            document.getElementById('hideParagraphBtn').classList.add('hidden');
+        });
+
+        // Show the paragraph
+        document.getElementById('showParagraphBtn').addEventListener('click', function() {
+            document.getElementById('paragraph').classList.remove('hidden');
+            document.getElementById('hideParagraphBtn').classList.remove('hidden');
+            document.getElementById('showParagraphBtn').classList.add('hidden');
+        });
+
+        // Add a new item to the list
+        document.getElementById('addItemBtn').addEventListener('click', function() {
+            const newItem = document.createElement('li');
+            newItem.textContent = 'New Item';
+            document.getElementById('list').appendChild(newItem);
+        });
+
+        // Remove the last item from the list
+        document.getElementById('removeItemBtn').addEventListener('click', function() {
+            const list = document.getElementById('list');
+            if (list.lastChild) {
+                list.removeChild(list.lastChild);
+            }
+        });
+
+        // Insert an item before the first item
+        document.getElementById('insertBeforeBtn').addEventListener('click', function() {
+            const newItem = document.createElement('li');
+            newItem.textContent = 'Inserted Before';
+            const list = document.getElementById('list');
+            list.insertBefore(newItem, list.firstChild);
+        });
+
+        // Insert an item after the first item
+        document.getElementById('insertAfterBtn').addEventListener('click', function() {
+            const newItem = document.createElement('li');
+            newItem.textContent = 'Inserted After';
+            const list = document.getElementById('list');
+            if (list.firstChild) {
+                list.insertBefore(newItem, list.firstChild.nextSibling);
+            }
+        });
+
+        // Replace the first item
+        document.getElementById('replaceItemBtn').addEventListener('click', function() {
+            const newItem = document.createElement('li');
+            newItem.textContent = 'Replaced Item';
+            const list = document.getElementById('list');
+            if (list.firstChild) {
+                list.replaceChild(newItem, list.firstChild);
+            }
+        });
+
+        // Clone the first item
+        document.getElementById('cloneItemBtn').addEventListener('click', function() {
+            const list = document.getElementById('list');
+            if (list.firstChild) {
+                const clone = list.firstChild.cloneNode(true);
+                list.appendChild(clone);
+            }
+        });
+
+        // Modify an attribute of the title
+        document.getElementById('modifyAttributeBtn').addEventListener('click', function() {
+            const title = document.getElementById('title');
+            title.setAttribute('data-example', 'newValue');
+        });
+
+        // Remove an attribute of the title
+        document.getElementById('removeAttributeBtn').addEventListener('click', function() {
+            const title = document.getElementById('title');
+            title.removeAttribute('data-example');
+        });
+
+        // Change the style of the title
+        document.getElementById('changeStyleBtn').addEventListener('click', function() {
+            document.getElementById('title').style.color = 'blue';
+            document.getElementById('title').style.fontSize = '2em';
+        });
+
+        // Create a new element with attributes
+        document.getElementById('createElementBtn').addEventListener('click', function() {
+            const newLink = document.createElement('a');
+            newLink.textContent = 'Visit Microsoft';
+            newLink.href = 'https://www.microsoft.com';
+            newLink.target = '_blank';
+            document.body.appendChild(newLink);
+        });
+
+        // Traverse the DOM
+        document.getElementById('traverseDOMBtn').addEventListener('click', function() {
+            const list = document.getElementById('list');
+            const firstItem = list.firstElementChild;
+            const lastItem = list.lastElementChild;
+            const nextItem = firstItem.nextElementSibling;
+            const prevItem = lastItem.previousElementSibling;
+            
+            alert(`First Item: ${firstItem.textContent}\nLast Item: ${lastItem.textContent}\nNext Item: ${nextItem.textContent}\nPrevious Item: ${prevItem.textContent}`);
+        });
+
+        // Listen for hover event
+        document.getElementById('hoverBtn').addEventListener('mouseover', function() {
+            alert('Button Hovered!');
+        });
+
+        // Listen for keyup event
+        document.getElementById('inputField').addEventListener('keyup', function(event) {
+            console.log('Key pressed:', event.key);
+        });
+
+        // Change inner HTML
+        document.getElementById('changeHtmlBtn').addEventListener('click', function() {
+            document.getElementById('paragraph').innerHTML = '<strong>New HTML content</strong>';
+        });
+    </script>
+</body>
+</html>
