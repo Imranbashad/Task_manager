@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -204,5 +204,89 @@
             document.getElementById('paragraph').innerHTML = '<strong>New HTML content</strong>';
         });
     </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Append and Insert Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Div for appendChild example -->
+    <div id="append-child-example" class="container">
+        <p>This is the Append Child example.</p>
+    </div>
+    <button onclick="appendChildExample()">Append Child</button>
+
+    <!-- Div for insertAdjacentHTML beforeend example -->
+    <div id="insert-adjacent-html-beforeend-example" class="container">
+        <p>This is the Insert Adjacent HTML (beforeend) example.</p>
+    </div>
+    <button onclick="insertAdjacentHTMLBeforeendExample()">Insert Adjacent HTML (beforeend)</button>
+
+    <!-- Div for insertAdjacentHTML afterend example -->
+    <div id="insert-adjacent-html-afterend-example" class="container">
+        <p>This is the Insert Adjacent HTML (afterend) example.</p>
+    </div>
+    <button onclick="insertAdjacentHTMLAfterendExample()">Insert Adjacent HTML (afterend)</button>
+
+    <script>
+        let appendChildCounter = 0;
+        let beforeendCounter = 0;
+        let afterendCounter = 0;
+
+        function appendChildExample() {
+            appendChildCounter++;
+            const div = document.getElementById('append-child-example');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'This text is appended inside the div. ' + appendChildCounter;
+            div.appendChild(newElement);
+        }
+
+        function insertAdjacentHTMLBeforeendExample() {
+            beforeendCounter++;
+            const div = document.getElementById('insert-adjacent-html-beforeend-example');
+            div.insertAdjacentHTML('beforeend', '<p>This text is inserted inside the div using beforeend. ' + beforeendCounter + '</p>');
+        }
+
+        function insertAdjacentHTMLAfterendExample() {
+            afterendCounter++;
+            const div = document.getElementById('insert-adjacent-html-afterend-example');
+            div.insertAdjacentHTML('afterend', '<p>This text is inserted outside the div using afterend. ' + afterendCounter + '</p>');
+        }
+    </script>
+
 </body>
 </html>

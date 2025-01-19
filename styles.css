@@ -88,29 +88,29 @@ h2 {
   right: 15px;
   top: 15px;
 }
-.task-actions button{
+.task-actions button {
   margin-left: 5px;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
   border-radius: 3px;
 }
-.task-actions .edit-button{
-  background-color:#ffc107;
+.task-actions .edit-btn {
+  background-color: #ffc107;
   color: #fff;
 }
-.task-actions .delete-button{
-  background-color:#dc3545;
+.task-actions .delete-btn {
+  background-color: #dc3545;
   color: #fff;
 }
 
-@media(max-width:600px) {
-  #search-fiter{
+@media (max-width: 600px) {
+  #search-fiter {
     flex-direction: column;
   }
-  #search-bar,#filter-category{
+  #search-bar,
+  #filter-category {
     width: 100%;
     margin-bottom: 10px;
   }
-  
 }
